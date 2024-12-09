@@ -47,39 +47,39 @@ This document outlines best practices for designing secure, scalable, and compli
     }
   ]
 }
+```
+## Azure IAM Best Practices
 
-# Azure IAM Best Practices
+### 1. **Utilize Azure Active Directory (Azure AD)**
+- Centralize identity management and enable identity federation with third-party providers.
 
-## 1. Utilize Azure Active Directory (Azure AD)
-	•	Centralize identity management and enable identity federation with third-party providers.
+### 2. **Implement Conditional Access Policies**
+- Enforce secure access based on device state, location, and risk level.
 
-## 2. Implement Conditional Access Policies
-	•	Enforce secure access based on device state, location, and risk level.
+### 3. **Granular Role Assignments**
+- Assign roles at the resource group or resource level to enforce least privilege.
 
-## 3. Granular Role Assignments
-	•	Assign roles at the resource group or resource level to enforce least privilege.
-
-# Example Azure Role Assignment
-
+### Example Azure Role Assignment
+```json
 {
   "roleDefinitionId": "/subscriptions/{subscription-id}/providers/Microsoft.Authorization/roleDefinitions/{role-id}",
   "principalId": "{user-object-id}",
   "scope": "/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}"
 }
+```
+## GCP IAM Best Practices
 
-# GCP IAM Best Practices
+### 1. **Use Predefined Roles**
+- Assign predefined roles instead of primitive roles like “Owner” or “Editor” to limit over-permissioning.
 
-## 1. Use Predefined Roles
-	•	Assign predefined roles instead of primitive roles like “Owner” or “Editor” to limit over-permissioning.
+### 2. **Enable Access Transparency**
+- Log and audit all administrative actions for compliance.
 
-## 2. Enable Access Transparency
-	•	Log and audit all administrative actions for compliance.
+### 3. **Regularly Audit Permissions**
+- Use IAM Recommender to identify and remove unused or excessive permissions.
 
-## 3. Regularly Audit Permissions
-	•	Use IAM Recommender to identify and remove unused or excessive permissions.
-
-# Example GCP IAM Policy
-
+## Example GCP IAM Policy
+```json
 {
   "bindings": [
     {
@@ -108,15 +108,16 @@ This document outlines best practices for designing secure, scalable, and compli
     }
   ]
 }
+```
 
-# Cross-Platform IAM Best Practices
+## Cross-Platform IAM Best Practices
 
-##1. Centralized Identity Providers
-	•	Use a single identity provider like Azure AD or Okta for consistent access management across AWS, Azure, and GCP.
+### 1. **Centralized Identity Providers**
+- Use a single identity provider like Azure AD or Okta for consistent access management across AWS, Azure, and GCP.
 
-## 2. Automated IAM Policy Management
-	•	Automate policy creation and assignment using tools like Terraform or Pulumi.
+### 2. **Automated IAM Policy Management**
+- Automate policy creation and assignment using tools like Terraform or Pulumi.
 
-## 3. Logging and Monitoring
-	•	Integrate IAM logs with SIEM tools (e.g., Splunk or ELK Stack) for real-time monitoring.
+### 3. **Logging and Monitoring**
+- Integrate IAM logs with SIEM tools (e.g., Splunk or ELK Stack) for real-time monitoring.
 
