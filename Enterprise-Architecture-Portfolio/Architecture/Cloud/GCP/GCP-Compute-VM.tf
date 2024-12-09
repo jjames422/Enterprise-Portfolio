@@ -58,3 +58,5 @@ How to Apply
 	1.	Save the file as GCP-Compute-VM.tf.
 	2.	Initialize Terraform:
 terraform init
+        3.	Apply the configuration:
+terraform apply
