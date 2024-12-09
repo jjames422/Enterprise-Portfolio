@@ -1,1 +1,18 @@
-
+# GCP Firewall Rule Configuration
+name: "allow-https-and-restricted-ssh"
+description: "Allow HTTPS traffic from all sources and restrict SSH access"
+network: "default" # Replace with your VPC network name
+priority: 1000
+direction: "INGRESS"
+allowed:
+  - IPProtocol: "tcp"
+    ports:
+      - "443" # HTTPS
+  - IPProtocol: "tcp"
+    ports:
+      - "22" # SSH
+sourceRanges:
+  - "0.0.0.0/0" # Allow HTTPS from all sources
+  - "203.0.113.0/32" # Restrict SSH to specific IP (replace with yours)
+targetTags:
+  - "web-server" # Apply rule to instances with this tag
