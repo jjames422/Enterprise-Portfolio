@@ -1,14 +1,14 @@
-## Here’s an example I have prepared for Azure-Scoped-Role-Assignment.json:
-```json
+Here’s an example I have prepared for Azure-Scoped-Role-Assignment.json:
+
 {
   "roleDefinitionId": "/subscriptions/{subscription-id}/providers/Microsoft.Authorization/roleDefinitions/{role-id}",
   "principalId": "{user-object-id}",
   "scope": "/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}"
 }
-```
-## Parameters Explanation
-### 1.	roleDefinitionId:
-- This is the ID of the role you are assigning, such as:
+
+Parameters Explanation
+ 1.	roleDefinitionId:
+                This is the ID of the role you are assigning, such as:
 	•	Contributor: b24988ac-6180-42a0-ab88-20f7382dd24c
 	•	Reader: acdd72a7-3385-48ef-bd42-f606fba81ae7
 	•	Replace {role-id} with the actual ID of the role.
