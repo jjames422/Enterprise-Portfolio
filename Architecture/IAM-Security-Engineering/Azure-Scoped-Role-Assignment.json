@@ -1,0 +1,42 @@
+Here’s an example I have prepared for Azure-Scoped-Role-Assignment.json:
+
+{
+  "roleDefinitionId": "/subscriptions/{subscription-id}/providers/Microsoft.Authorization/roleDefinitions/{role-id}",
+  "principalId": "{user-object-id}",
+  "scope": "/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}"
+}
+
+Parameters Explanation
+ 1.	roleDefinitionId:
+                This is the ID of the role you are assigning, such as:
+	•	Contributor: b24988ac-6180-42a0-ab88-20f7382dd24c
+	•	Reader: acdd72a7-3385-48ef-bd42-f606fba81ae7
+	•	Replace {role-id} with the actual ID of the role.
+	2.	principalId:
+	•	The unique ID of the user, group, or service principal being assigned the role.
+	•	Replace {user-object-id} with the Azure Active Directory (AAD) Object ID of the principal.
+	3.	scope:
+	•	Defines the specific resource or resource group the role applies to.
+	•	Replace {subscription-id} and {resource-group-name} with your Azure subscription ID and resource group name.
+
+Example with Values
+
+{
+  "roleDefinitionId": "/subscriptions/12345678-1234-1234-1234-123456789abc/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c",
+  "principalId": "abcd1234-abcd-1234-abcd-123456789abc",
+  "scope": "/subscriptions/12345678-1234-1234-1234-123456789abc/resourceGroups/my-resource-group"
+}
+
+How to Use
+	1.	Save this file as Azure-Scoped-Role-Assignment.json.
+	2.	Use the Azure CLI to assign the role:
+
+az role assignment create --assignee <principal-id> --role <role-name> --scope <scope>
+
+Alternatively, use:
+
+az rest --method post --url https://management.azure.com/<scope>/providers/Microsoft.Authorization/roleAssignments?api-version=2020-04-01 --body @Azure-Scoped-Role-Assignment.json
+
+
+
+I hope this high level overview helped you! Contact me if you need more support!!

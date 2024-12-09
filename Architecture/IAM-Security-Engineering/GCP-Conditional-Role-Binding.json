@@ -1,0 +1,85 @@
+{
+  "bindings": [
+    {
+      "role": "roles/storage.objectViewer",
+      "members": [
+        "user:example-user@example.com"
+      ],
+      "condition": {
+        "title": "Temporary Access",
+        "description": "Grants access for a limited time period.",
+        "expression": "request.time < timestamp('2024-12-31T23:59:59Z')"
+      }
+    },
+    {
+      "role": "roles/storage.objectAdmin",
+      "members": [
+        "user:admin-user@example.com"
+      ],
+      "condition": {
+        "title": "Tag-Based Access",
+        "description": "Grants admin access only for resources tagged with 'enterprise-project'.",
+        "expression": "resource.labels.project == 'enterprise-project'"
+      }
+    }
+  ]
+}
+
+Here’s the GCP-Conditional-Role-Binding.json content:
+
+{
+  "bindings": [
+    {
+      "role": "roles/storage.objectViewer",
+      "members": [
+        "user:example-user@example.com"
+      ],
+      "condition": {
+        "title": "Temporary Access",
+        "description": "Grants access for a limited time period.",
+        "expression": "request.time < timestamp('2024-12-31T23:59:59Z')"
+      }
+    },
+    {
+      "role": "roles/storage.objectAdmin",
+      "members": [
+        "user:admin-user@example.com"
+      ],
+      "condition": {
+        "title": "Tag-Based Access",
+        "description": "Grants admin access only for resources tagged with 'enterprise-project'.",
+        "expression": "resource.labels.project == 'enterprise-project'"
+      }
+    }
+  ]
+}
+
+Explanation of the Code
+	1.	bindings: Specifies role bindings for IAM.
+	2.	role: Specifies the predefined IAM role:
+	•	roles/storage.objectViewer: Grants read-only access to storage objects.
+	•	roles/storage.objectAdmin: Grants administrative permissions for storage objects.
+	3.	members: Lists the users or service accounts granted the role.
+	•	user:example-user@example.com: Grants access to a specific user.
+	4.	condition: Adds conditions to the IAM role binding for enhanced control:
+	•	Temporary Access:
+	•	Limits the role to a specific time frame using request.time.
+	•	Tag-Based Access:
+	•	Restricts access to resources tagged with enterprise-project.
+
+How to Use
+	1.	Save the file as GCP-Conditional-Role-Binding.json.
+	2.	Apply the policy using the Google Cloud CLI:
+
+gcloud projects set-iam-policy [PROJECT_ID] GCP-Conditional-Role-Binding.json
+
+Replace [PROJECT_ID] with your Google Cloud project ID.
+
+	3.	To verify the applied policy, run:
+
+gcloud projects get-iam-policy [PROJECT_ID]
+
+Customizations
+	•	Add More Members: Extend the members array to include more users or service accounts.
+	•	Change Roles: Replace roles/storage.objectViewer or roles/storage.objectAdmin with other predefined roles as needed.
+	•	Adjust Conditions: Update the expression field to enforce other dynamic rules, such as location-based or workload identity bindings.

@@ -1,0 +1,85 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "s3:*",
+      "Resource": "arn:aws:s3:::${aws:username}-bucket/*",
+      "Condition": {
+        "StringEquals": {
+          "aws:RequestTag/Project": "EnterpriseProject"
+        }
+      }
+    },
+    {
+      "Effect": "Deny",
+      "Action": "s3:DeleteObject",
+      "Resource": "arn:aws:s3:::${aws:username}-bucket/*",
+      "Condition": {
+        "StringEquals": {
+          "aws:RequestTag/Environment": "Production"
+        }
+      }
+    }
+  ]
+}
+
+Here is the content for AWS-ABAC-Policy.json:
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "s3:*",
+      "Resource": "arn:aws:s3:::${aws:username}-bucket/*",
+      "Condition": {
+        "StringEquals": {
+          "aws:RequestTag/Project": "EnterpriseProject"
+        }
+      }
+    },
+    {
+      "Effect": "Deny",
+      "Action": "s3:DeleteObject",
+      "Resource": "arn:aws:s3:::${aws:username}-bucket/*",
+      "Condition": {
+        "StringEquals": {
+          "aws:RequestTag/Environment": "Production"
+        }
+      }
+    }
+  ]
+}
+
+Explanation of the Code
+	1.	Version: Specifies the version of the policy language.
+	2.	Statement: Defines the permissions in the policy.
+	•	Allow Statement:
+	•	Grants full access to S3 buckets matching the username of the AWS identity making the request.
+	•	Restricts access to resources tagged with Project: EnterpriseProject.
+	•	Deny Statement:
+	•	Explicitly denies DeleteObject actions on resources tagged with Environment: Production.
+	3.	Condition: Adds dynamic conditions for granting or denying access based on resource tags.
+
+Use Cases
+	•	Dynamic Resource Access:
+	•	Users can access only the S3 buckets associated with their usernames.
+	•	Environment Protection:
+	•	Ensures no one can delete objects in production environments, enforcing compliance and safety.
+
+How to Use
+	1.	Save this JSON policy as AWS-ABAC-Policy.json.
+	2.	Attach the policy to a user, group, or role using the AWS CLI:
+
+aws iam put-user-policy --user-name [USER_NAME] --policy-name ABACPolicy --policy-document file://AWS-ABAC-Policy.json
+
+Replace [USER_NAME] with the IAM user or use put-role-policy for roles.
+
+	3.	To verify the policy is applied:
+
+aws iam list-user-policies --user-name [USER_NAME]
+
+Customizations
+	•	Modify Tags: Replace EnterpriseProject or Production with the actual tags used in your AWS environment.
+	•	Expand Resources: Add more S3 resources or other AWS services to the policy
