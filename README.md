@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # Jonathan M. James - Enterprise Portfolio
 
 Welcome to my professional portfolio! This repository showcases my expertise in **Enterprise Architecture**, **Cybersecurity**, **Blockchain Development**, and **E-Commerce Solutions**. With over 15 years of experience leading complex technical initiatives in both the private and military sectors, I specialize in designing secure, scalable, and innovative systems that align with organizational goals.
@@ -71,4 +71,4 @@ This portfolio highlights my expertise in enterprise solutions, cybersecurity, a
 1. [Architecture](./Architecture/README.md)
 2. [Blockchain](./Blockchain/README.md)
 3. [E-Commerce](./E-Commerce/README.md)
->>>>>>>
+
