@@ -11,6 +11,15 @@ resource "aws_s3_bucket" "pci_compliant_bucket" {
     }
   }
 
+  logging {
+    target_bucket = aws_s3_bucket.log_bucket.id
+    target_prefix = "logs/"
+  }
+
+  versioning {
+    enabled = true
+  }
+
   lifecycle_rule {
     enabled = true
     transition {
@@ -19,8 +28,8 @@ resource "aws_s3_bucket" "pci_compliant_bucket" {
     }
   }
 
-  logging {
-    target_bucket = "pci-logs-bucket"
-    target_prefix = "s3/"
+  tags = {
+    "Environment" = "PCI"
+    "Compliance"  = "PCI DSS"
   }
 }
