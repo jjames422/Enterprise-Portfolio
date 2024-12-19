@@ -1,0 +1,11 @@
+{
+  "bindings": [
+    {
+      "role": "roles/storage.objectViewer",
+      "members": [
+        "user:authorized-user@example.com",
+        "serviceAccount:pci-service-account@example.com"
+      ]
+    }
+  ]
+}
